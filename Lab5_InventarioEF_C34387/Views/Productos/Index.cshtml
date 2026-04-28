@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Lab5_InventarioEF_C34387.Models.Producto>
+
+<h2 class="mb-3">Productos</h2>
+
+<a class="btn btn-primary mb-3" href="/Productos/Create">Agregar Producto</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay productos registrados</div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th>Fecha</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Precio</td>
+                <td>@item.Categoria</td>
+                <td>@item.FechaIngreso.ToShortDateString()</td>
+                <td>@(item.Activo ? "Sí" : "No")</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" href="/Productos/Edit/@item.Id">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="/Productos/Delete/@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
