@@ -1,7 +1,15 @@
+using Lab5_InventarioEF_C34387.Data;
+using Lab5_InventarioEF_C34387.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 
 var app = builder.Build();
 
@@ -22,7 +30,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Productos}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
