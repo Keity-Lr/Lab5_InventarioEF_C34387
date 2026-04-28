@@ -1,0 +1,22 @@
+﻿@model Producto
+
+<h2 class="mb-4 text-danger">Eliminar Producto</h2>
+
+<div class="card p-4 shadow">
+
+    <p class="fw-bold">¿Estás seguro que deseas eliminar este producto?</p>
+
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+        <li class="list-group-item"><strong>Precio:</strong> @Model.Precio</li>
+        <li class="list-group-item"><strong>Categoría:</strong> @Model.Categoria</li>
+    </ul>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="/Productos" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+</div>
